@@ -10,10 +10,10 @@ def downloadAll():
     parameters = {"categories":"111", "purity":"110", "sorting":"random", "order":"desc"}
     parser = argparse.ArgumentParser()
     parser.add_argument("keyword", nargs = "?")
-    parser.add_argument("--sfw", help = "show only safe for work wallpapers")
+    parser.add_argument("-s", "--sfw", action="store_true", help = "show only safe for work wallpapers")
     args = parser.parse_args()
     if args.sfw:
-        parameters[purity] = "100"
+        parameters["purity"] = "100"
     if args.keyword is not None:
         parameters["q"] = args.keyword
     sourceURL = "http://alpha.wallhaven.cc/search"
