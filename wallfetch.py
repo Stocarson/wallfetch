@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 import requests
 import re
 import urllib.request
@@ -24,7 +24,7 @@ def downloadAll():
     images = re.findall('data-wallpaper.id="(.*?)"', html)
     pool = Pool(processes=mp.cpu_count())
     pool.map(downloadImage, images)
- 
+
 def downloadImage(index):
     imageURL = "http://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-"
     print("Downloading image no " + index)
@@ -37,9 +37,9 @@ def downloadImage(index):
         f.write(r.read())
     except urllib.error.URLError:
         print("Cannot download image number " + index)
- 
+
 def main():
     downloadAll()
- 
+
 if __name__ == "__main__":
     main()
